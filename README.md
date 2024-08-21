@@ -2,7 +2,7 @@
 
 - Built a full fledged microservices based Movie Streaming Application
 - Architecture:
-![Architecture](image.png)
+![Architecture](assets/image.png)
     1. Service Registry: A registry where we store the information about all the other services, it itself is a microservice.
     2. movie-catalog-service: Store the metadata about the available movies.
     3. movie-streaming-service: Responsible for streaming the video.
