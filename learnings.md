@@ -40,3 +40,8 @@ eureka.client.fetch-registry=false because we don't want this service to registe
             - `spring.cloud.gateway.mvc.routes[0].id=movie-catalog-service` -> unique id
             - `spring.cloud.gateway.mvc.routes[0].uri=http://localhost:8090` -> the redirect uri
             - `spring.cloud.gateway.mvc.routes[0].predicates[0]=Path=/movie-info/*` -> the incoming uri which if satisfies this predicate is directed to the above uri, you can have multiple predicates 
+
+## 5. Interservice communication
+- Right now we are streaming based on path, but what if we only have the id, so first our streaming service will contact the catalog to get the path using the id, this will require inter service comm. which inherently comes with challenges like there may be multiple instances of the catalog service so we need to use loadbalancer dependency to enable this
+	
+- add `implementation 'org.springframework.cloud:spring-cloud-starter-loadbalancer'` in build.gradle of streaming service.
