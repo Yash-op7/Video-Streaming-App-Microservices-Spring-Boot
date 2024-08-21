@@ -2,9 +2,10 @@ package com.yash_95.video_streaming_app.api_gateway_service;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
-@EnableDiscoveryCli
+@EnableDiscoveryClient
 public class ApiGatewayServiceApplication {
 
 	public static void main(String[] args) {
