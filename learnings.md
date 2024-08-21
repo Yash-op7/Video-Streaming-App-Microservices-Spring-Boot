@@ -45,3 +45,6 @@ eureka.client.fetch-registry=false because we don't want this service to registe
 - Right now we are streaming based on path, but what if we only have the id, so first our streaming service will contact the catalog to get the path using the id, this will require inter service comm. which inherently comes with challenges like there may be multiple instances of the catalog service so we need to use loadbalancer dependency to enable this
 	
 - add `implementation 'org.springframework.cloud:spring-cloud-starter-loadbalancer'` in build.gradle of streaming service.
+- this load balancer service will help us choose one particular instance of the catalog service
+
+- we make a RestConfiguraiton.java, with a RestTemplate bean which allows us to make HTTP requests to any other resource
