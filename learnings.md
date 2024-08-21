@@ -17,3 +17,4 @@ eureka.client.fetch-registry=false because we don't want this service to registe
 - First add this annotation in the main class: `@EnableDiscoveryClient`, this enables the configuration to automatically connect to the eureka discovery server or the service registry
 - Configure application.properties:
     - `eureka.client.service-url.defaultZone=http://localhost:8761/eureka` needs to be provided to let this service know where the service registry is running, this is the only configuration we need to do to register this service into the service registry
+- Run it to test
