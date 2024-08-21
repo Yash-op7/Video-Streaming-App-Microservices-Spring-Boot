@@ -18,7 +18,7 @@ public class MovieStreamController {
     public static final String VIDEO_DIRECTORY = "/Users/yashmeena/Desktop/stuff/git repos/Video-Streaming-App-Microservices-Spring-Boot/assets/";
 
     @GetMapping("/stream/{videoPath}")
-    public ResponseEntity<InputStreamResource> streamVideo(@PathVariable String videoPath) throws FileNotFoundException  {
+    public ResponseEntity<InputStreamResource> streamVideo(@PathVariable("videoPath") String videoPath) throws FileNotFoundException  {
         System.out.println("video path is" + VIDEO_DIRECTORY + videoPath);
 
         File file = new File(VIDEO_DIRECTORY+videoPath);
@@ -31,5 +31,4 @@ public class MovieStreamController {
             return ResponseEntity.notFound().build();
         }
     }
-    
 }
