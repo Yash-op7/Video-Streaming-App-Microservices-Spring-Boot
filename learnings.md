@@ -18,3 +18,10 @@ eureka.client.fetch-registry=false because we don't want this service to registe
 - Configure application.properties:
     - `eureka.client.service-url.defaultZone=http://localhost:8761/eureka` needs to be provided to let this service know where the service registry is running, this is the only configuration we need to do to register this service into the service registry
 - Run it to test
+- Go the eureka server: localhost:8761, you'll see your service registered:
+    - `AMI`s and Availabilty Zones: More than once instance of the microservices...
+### Now we write the business logic for movie-catalog-service
+- This service is responsible for managing the metadata of the videos, so we connect to a SQL db via Spring Data JPA
+- Make a few controllers for CRUD of the data on the db
+- Submit the metadata via a post req to the db
+- Firstly add the dependencies for Spring Data JPA
