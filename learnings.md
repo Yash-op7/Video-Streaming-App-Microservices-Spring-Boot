@@ -25,3 +25,18 @@ eureka.client.fetch-registry=false because we don't want this service to registe
 - Make a few controllers for CRUD of the data on the db
 - Submit the metadata via a post req to the db
 - Firstly add the dependencies for Spring Data JPA
+
+## 3. movie-streaming-service
+- Same in configuration as movie-catalog-service, just the REST controler logic differs.
+
+## 4. API Gateway
+- Dependencies:
+    - Eureka Discovrey Client
+    - Gateway (Spring Cloud Routing)
+- Configuration:
+    - `application.properties`:
+        - Set the eureka discovery url
+        - ⭐️ Set up the routes which redirect incoming requests to the microservices in the business logic, for each microservice set the followig 3 properties:
+            - `spring.cloud.gateway.mvc.routes[0].id=movie-catalog-service` -> unique id
+            - `spring.cloud.gateway.mvc.routes[0].uri=http://localhost:8090` -> the redirect uri
+            - `spring.cloud.gateway.mvc.routes[0].predicates[0]=Path=/movie-info/*` -> the incoming uri which if satisfies this predicate is directed to the above uri, you can have multiple predicates 
