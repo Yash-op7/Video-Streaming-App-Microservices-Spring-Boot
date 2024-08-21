@@ -10,6 +10,5 @@
     5. Config Server: To control the configurations of all other microservices in a centralized way.
     6. Zipkin: A Tracing tool, collects the logs and provide informatino about the microservices runnign in the app.
 
-Interservice communication
+Interservice communication is also something to take care of down the line
 
-## 1. Eureka Service Registry
