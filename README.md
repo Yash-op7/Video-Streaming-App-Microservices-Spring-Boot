@@ -42,3 +42,10 @@ curl -X POST http://localhost:8090/movie-info/save \
     }
 ]'
 ```
+
+
+This is the screenshot of the final project:
+![Demo](assets/demo.png)
+
+and these are the services in the service registry:
+![ServicRegistry](assets/serviceRegistry.png)
