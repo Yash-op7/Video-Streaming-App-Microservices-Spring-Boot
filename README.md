@@ -12,3 +12,7 @@
 
 Interservice communication is also something to take care of down the line
 
+2024-08-22 06:46:00 -> Finished Project
+
+To run it simply clone the repo, build the project with gradle clean install on each microservice (or write a script for it, i will maybe write one, but its just simple commands nothing complex)
+Then populate the mysql server with the following dummy code for now:

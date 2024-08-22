@@ -87,7 +87,7 @@
                     title.textContent = video.name;
 
                     const videoElement = document.createElement('video');
-                    videoElement.src = `http://localhost:8080/stream/${video.path}`;
+                    videoElement.src = `http://localhost:8080/stream/${video.path}#t=2`;
                     videoElement.controls = true;
                     videoElement.poster = ""; // Thumbnail placeholder
 
