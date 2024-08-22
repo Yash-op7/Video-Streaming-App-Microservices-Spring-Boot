@@ -7,7 +7,7 @@ import org.springframework.web.client.RestTemplate;
 @Component
 public class MovieCatalogService {
 
-    public static final String CATALOG_SERVICE = "http://movie-catalog-service";
+    public static final String CATALOG_SERVICE = "http://localhost:8090";
     
     @Autowired
     private RestTemplate restTemplate;

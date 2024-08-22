@@ -23,7 +23,7 @@ public class MovieStreamController {
     @Autowired
     private MovieCatalogService movieCatalogService;
 
-    public static final Logger log = System.Logger.getLogger(MovieStreamController.class.getName());
+    public static final Logger log = Logger.getLogger(MovieStreamController.class.getName());
     public static final String VIDEO_DIRECTORY = "/Users/yashmeena/Desktop/stuff/git repos/Video-Streaming-App-Microservices-Spring-Boot/assets/";
 
     @GetMapping("/stream/{videoPath}")
