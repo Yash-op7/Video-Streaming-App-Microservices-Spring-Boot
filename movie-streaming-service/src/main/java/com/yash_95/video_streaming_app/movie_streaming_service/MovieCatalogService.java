@@ -1,5 +1,6 @@
 package com.yash_95.video_streaming_app.movie_streaming_service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -12,6 +13,7 @@ public class MovieCatalogService {
     private RestTemplate restTemplate;
 
     public String getMoviePath(Long id) {
-        restTemplate.getForEntity(Catalog);
+        var response = restTemplate.getForEntity(CATALOG_SERVICE + "/movie-info/find-path-by-id/{id}", String.class, id);
+        return response.getBody();
     }
 }
