@@ -1,75 +1,113 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Video Library</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video List</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f4f8;
             margin: 0;
-            padding: 0;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .video-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
         }
 
         .video-card {
-            width: 300px;
-            margin: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
-        .video-card .title {
-            background-color: #333;
+        .video-card h2 {
+            font-size: 18px;
+            margin: 0;
+            padding: 15px;
+            background-color: #6200ea;
             color: #fff;
-            padding: 10px;
-            text-align: center;
-        }
-
-        .video-card .description {
-            padding: 10px;
-            text-align: center;
         }
 
         .video-card video {
             width: 100%;
-            height: 200px;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .video-card p {
+            padding: 15px;
+            color: #666;
+            font-size: 14px;
+            background-color: #f9f9f9;
+        }
+
+        @media (max-width: 768px) {
+            .video-card {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <div id="video-cards"></div>
-    <script>
-        fetch('http://localhost:8080/movie-info/list')
-            .then(response => response.json())
-            .then(data => {
-                const videoCardsContainer = document.getElementById('video-cards');
-                data.forEach(video => {
-                    const card = document.createElement('div');
-                    card.classList.add('video-card');
 
-                    const title = document.createElement('h3');
-                    title.className = 'title';
+    <h1>Available Videos</h1>
+
+    <div class="video-container" id="videoContainer">
+        <!-- Video cards will be inserted here -->
+    </div>
+
+    <script>
+        // Function to fetch video data and populate the cards
+        async function fetchVideos() {
+            try {
+                const response = await fetch('http://localhost:8080/movie-info/list');
+                const videos = await response.json();
+
+                const container = document.getElementById('videoContainer');
+
+                videos.forEach(video => {
+                    const card = document.createElement('div');
+                    card.className = 'video-card';
+
+                    const title = document.createElement('h2');
                     title.textContent = video.name;
 
                     const videoElement = document.createElement('video');
-                    videoElement.src = `http://localhost:8080/stream/with-id/${video.id}`;
+                    videoElement.src = `http://localhost:8080/stream/with-id/${video.id}#t=2`;
                     videoElement.controls = true;
-                    videoElement.preload = 'metadata'; // Load metadata first for thumbnail
+                    videoElement.poster = ""; // Thumbnail placeholder
 
                     const description = document.createElement('p');
-                    description.className = 'description';
                     description.textContent = video.description;
 
                     card.appendChild(title);
                     card.appendChild(videoElement);
                     card.appendChild(description);
 
-                    videoCardsContainer.appendChild(card);
+                    container.appendChild(card);
                 });
-            });
+            } catch (error) {
+                console.error('Error fetching video data:', error);
+            }
+        }
+
+        // Call the function to fetch videos when the page loads
+        fetchVideos();
     </script>
+
 </body>
 </html>

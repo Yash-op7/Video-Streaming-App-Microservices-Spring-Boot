@@ -20,7 +20,11 @@ public class ApiGatewayServiceApplication {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				WebMvcConfigurer.super.addCorsMappings(registry);
+				// WebMvcConfigurer.super.addCorsMappings(registry);
+				registry.addMapping("/**")
+					.allowedHeaders("*")
+					.allowedMethods("*")
+					.allowedOrigins("*");
 			}
 		};
 	}
