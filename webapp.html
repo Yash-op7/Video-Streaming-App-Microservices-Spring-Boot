@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Video Library</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .video-card {
+            width: 300px;
+            margin: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-card .title {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .video-card .description {
+            padding: 10px;
+            text-align: center;
+        }
+
+        .video-card video {
+            width: 100%;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div id="video-cards"></div>
+    <script>
+        fetch('http://localhost:8080/movie-info/list')
+            .then(response => response.json())
+            .then(data => {
+                const videoCardsContainer = document.getElementById('video-cards');
+                data.forEach(video => {
+                    const card = document.createElement('div');
+                    card.classList.add('video-card');
+
+                    const title = document.createElement('h3');
+                    title.className = 'title';
+                    title.textContent = video.name;
+
+                    const videoElement = document.createElement('video');
+                    videoElement.src = `http://localhost:8080/stream/with-id/${video.id}`;
+                    videoElement.controls = true;
+                    videoElement.preload = 'metadata'; // Load metadata first for thumbnail
+
+                    const description = document.createElement('p');
+                    description.className = 'description';
+                    description.textContent = video.description;
+
+                    card.appendChild(title);
+                    card.appendChild(videoElement);
+                    card.appendChild(description);
+
+                    videoCardsContainer.appendChild(card);
+                });
+            });
+    </script>
+</body>
+</html>
